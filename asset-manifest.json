@@ -1,0 +1,14 @@
+{
+  "main.css": "/flickfind/static/css/main.ef04765c.chunk.css",
+  "main.js": "/flickfind/static/js/main.bc6a7745.chunk.js",
+  "main.js.map": "/flickfind/static/js/main.bc6a7745.chunk.js.map",
+  "static/js/1.c5147e7c.chunk.js": "/flickfind/static/js/1.c5147e7c.chunk.js",
+  "static/js/1.c5147e7c.chunk.js.map": "/flickfind/static/js/1.c5147e7c.chunk.js.map",
+  "runtime~main.js": "/flickfind/static/js/runtime~main.d5f0a1d2.js",
+  "runtime~main.js.map": "/flickfind/static/js/runtime~main.d5f0a1d2.js.map",
+  "static/media/camera.svg": "/flickfind/static/media/camera.67526c83.svg",
+  "static/css/main.ef04765c.chunk.css.map": "/flickfind/static/css/main.ef04765c.chunk.css.map",
+  "index.html": "/flickfind/index.html",
+  "precache-manifest.4d455437496122cb1f6b501e5b0dccc7.js": "/flickfind/precache-manifest.4d455437496122cb1f6b501e5b0dccc7.js",
+  "service-worker.js": "/flickfind/service-worker.js"
+}
