@@ -1,0 +1,55 @@
+body {
+  background: #dcf6ff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  min-width: 800px;
+  overflow: overlay;
+}
+
+.app {
+  max-width: 1300px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  vertical-align: middle;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #808080;
+}
+
+.header-container > div {
+  width: 50%;
+  height: 100%;
+  align-content: center;
+  align-self: center;
+  vertical-align: middle;
+}
+
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  font-weight: bold;
+  font-size: 60px;
+  padding: 10px
+}
+
+.title h2 {
+  font-size: 30px;
+}
+
+.search-bar {
+  border: 1px solid #c0c0c0;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+  width: 80%;
+  background: #ffffff;
+}

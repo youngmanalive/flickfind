@@ -1,0 +1,50 @@
+.movie-index-item {
+  display: flex;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.movie-poster {
+  padding: 10px;
+}
+
+.movie-poster img {
+  width: 185px;
+  height: 278px;
+  border: 1px solid rgba(207, 207, 207, 0.5);
+  background: #ffffff;
+}
+
+.movie-details {
+  text-align: left;
+  width: auto;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.movie-details > * {
+  padding-bottom: 10px;
+}
+
+.movie-title {
+  font-size: 35px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.movie-year {
+  font-size: 25px;
+  text-align: left;
+}
+
+.movie-rating {
+  display: inline-block;
+}
+
+.movie-rating * {
+  vertical-align: middle;
+}
+
+.movie-overview {
+  text-align: justify;
+}

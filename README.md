@@ -1,68 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# FlickFind
+### A Movie Search App
 
-## Available Scripts
+### [LIVE DEMO](https://youngmanalive.github.io/flickfind)
 
-In the project directory, you can run:
+FlickFind is a simple React driven app that allows you to search for movies using [The Movie Db](https://www.themoviedb.org)'s API (version 3).
 
-### `npm start`
+![screenshot](./screenshot.jpg)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project was bootstrapped with `create-react-app`.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Dependencies:
+- [`create-react-app`](https://www.npmjs.com/package/create-react-app)
+- [`react-js-pagination`](https://www.npmjs.com/package/react-js-pagination) to handle paged results
+- [`react-rating`](https://www.npmjs.com/package/react-rating) to display voter ratings
 
-### `npm test`
+# Usage
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Download or clone this repository and run:
 
-### `npm run build`
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**You will need an API key to access TMDb's endpoint.**
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Get yours [HERE](https://developers.themoviedb.org/3/getting-started/introduction).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Once you've obtained a key you can:
 
-### `npm run eject`
+1. Create a `keys.js` file to be ignored by git:
+  ```JavaScript
+  // src/config/keys.js
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  export const API_KEY = "your key here";
+  ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Add your key directly into the `api_util.js` file:
+  ```JavaScript
+  // src/config/api_util.js
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  const BASE_URL = "https://api.themoviedb.org/3/search/movie?";
+  const API_KEY = "your key here"; // <<<< Your key
+  // const API_KEY = require('./keys').API_KEY; <<<< Remove this
+  
+  // ...
+  ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you plan on having public code I recommend the first option.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Then:
+```
+npm run start
+```
+You should be up and running! Enjoy.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Notes
+- Heirarchy:
+  - `App` - holds all state and handles fetching
+    - app title and search input
+    - `MovieIndex` - displays search results passed in from `App`
+      - `Pagination` - handles result pages
+      - `MovieIndexItem`
 
-### Code Splitting
+- `api_util.js` - API endpoint logic (`fetch`) and image url building
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- When running searches TMBd will respond with the total amount of pages (20 movies per page) and will default to page 1. You can query for the page number so long as you don't exceed 1,000. With this boundry the total results on the app can never exceed 20,000. (see `handleFetch` in `app.js`)
 
-### Analyzing the Bundle Size
+- Not all movies have poster images, so we'll default to a svg icon
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Future Directions
+- Shareable Search: A simple solution could use a URL hash:
+  - When the component mounts, check `location.hash` and run the search accordingly.
+- Sorting: Not sure how feasible this is since we only get 20 movies per request
+- Click on poster image and open full size image in new tab
+- Search history
+- Random movie search
+- Enable search filters such as year released
