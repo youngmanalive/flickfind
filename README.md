@@ -16,7 +16,7 @@ Dependencies:
 
 # Usage
 
-Download or clone this repository and run:
+Download or clone this repository, initialize a git and run:
 
 ```
 npm install
@@ -46,7 +46,7 @@ Once you've obtained a key you can:
   // ...
   ```
 
-If you plan on having public code I recommend the first option.
+If you plan on having public code I recommend the first option and you should also update the `"homepage": "example.com"` line in `package.json`
 
 
 Then:
