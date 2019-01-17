@@ -1,6 +1,7 @@
 import React from "react";
 import MovieIndex from "./movie_index";
 import { fetchMovies } from "../config/api_util";
+import copyToClipboard from "../config/copy_to_clipboard";
 
 class App extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class App extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFetch = this.handleFetch.bind(this);
+    this.handleHash = this.handleHash.bind(this);
     this.typingTimeout = null;
   }
 
@@ -22,6 +24,19 @@ class App extends React.Component {
     })
   }
 
+  componentDidMount() {
+    if (window.location.hash) this.handleHash();
+    window.addEventListener("hashchange", this.handleHash);
+  }
+
+  handleHash() {
+    const { location: { hash } } = window;
+    if (hash) {
+      const query = decodeURI(hash.slice(1, hash.length));
+      this.setState({ query }, this.handleFetch); 
+    }
+  }
+
   handleInputChange(e) {
     const query = e.currentTarget.value;
 
@@ -33,19 +48,25 @@ class App extends React.Component {
       this.setState(this.defaultState());
     } else {
       this.setState({ query, error: false }, () => {
-        this.typingTimeout = setTimeout(this.handleFetch, 150);
+        this.typingTimeout = setTimeout(() => this.handleFetch(1, query), 250);
       });
     }
   }
 
-  handleFetch(page = 1) {
-    // make sure query has not been cleared during timeout
+  handleFetch(page = 1, query) {
+    // handle possibility that query was cleared
     if (!this.state.query.length) return;
-
+    
     fetchMovies(this.state.query, page).then(res => {
       if (res.error) {
         this.setState({ error: true });
       } else {
+        // one last check when response is received:
+        // if query state has changed during request, do not update results.
+        // this means a new response is incoming or the query has been cleared.
+        // page changes are unaffected by this.
+        if (!this.state.query.length || (query && query !== this.state.query)) return;
+
         this.setState({
           activePage: page,
           movies: res.results,
@@ -56,6 +77,16 @@ class App extends React.Component {
   }
 
   render() {
+    const link = (
+      <div className="link-share">
+        <button 
+          className="share-button"
+          onClick={() => copyToClipboard(this.state.query)}>
+          Share this search
+        </button>
+      </div>
+    );
+
     return (
       <div className="app">
         <div className="header-container">
@@ -71,6 +102,7 @@ class App extends React.Component {
               value={this.state.query}
               placeholder="Enter a movie title..."
             />
+            {this.state.query.length && this.state.totalResults ? link : null }
           </div>
         </div>
         <div className="movie-index">

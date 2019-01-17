@@ -22,31 +22,19 @@ Download or clone this repository, initialize a git and run:
 npm install
 ```
 
+
 **You will need an API key to access TMDb's endpoint.**
 
 Get yours [HERE](https://developers.themoviedb.org/3/getting-started/introduction).
 
-Once you've obtained a key you can:
+Once you've obtained a key:
 
-1. Create a `keys.js` file to be ignored by git:
+Create a `keys.js` file to be ignored by git. The `.gitignore` file is already set up for you. Add the following line with your key:
   ```JavaScript
   // src/config/keys.js
 
   export const API_KEY = "your key here";
   ```
-
-2. Add your key directly into the `api_util.js` file:
-  ```JavaScript
-  // src/config/api_util.js
-
-  const BASE_URL = "https://api.themoviedb.org/3/search/movie?";
-  const API_KEY = "your key here"; // <<<< Your key
-  // const API_KEY = require('./keys').API_KEY; <<<< Remove this
-  
-  // ...
-  ```
-
-If you plan on having public code I recommend the first option and you should also update the `"homepage": "example.com"` line in `package.json`
 
 
 Then:

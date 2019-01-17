@@ -15,10 +15,7 @@ body {
   display: flex;
   justify-content: center;
   height: auto;
-  vertical-align: middle;
   align-items: center;
-  align-self: center;
-  align-content: center;
   padding-bottom: 20px;
   border-bottom: 1px solid #808080;
 }
@@ -26,9 +23,6 @@ body {
 .header-container > div {
   width: 50%;
   height: 100%;
-  align-content: center;
-  align-self: center;
-  vertical-align: middle;
 }
 
 .title {
@@ -52,4 +46,33 @@ body {
   padding: 10px;
   width: 80%;
   background: #ffffff;
+}
+
+.link-share {
+  position: relative;
+  width: 100%;
+}
+
+.share-button {
+  padding: 7px;
+  position: absolute;
+  top: 7px;
+  color: #5a5a5a;
+  transition: all .1s;
+  border-radius: 10px;
+  animation-name: fadeIn;
+  animation-duration: .3s;
+  animation-delay: 1s;
+  animation-fill-mode: both;
+}
+
+.share-button:hover {
+  color: #2e2eff;
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
