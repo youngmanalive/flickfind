@@ -3,7 +3,7 @@ import '../css/movie_index.css';
 import Pagination from "react-js-pagination";
 import MovieIndexItem from "./movie_index_item";
 
-class MoveIndex extends React.Component {
+class MovieIndex extends React.Component {
   render() {
     const { movies, activePage, totalResults, error } = this.props;
     
@@ -43,4 +43,4 @@ class MoveIndex extends React.Component {
   }
 }
 
-export default MoveIndex;
+export default MovieIndex;
